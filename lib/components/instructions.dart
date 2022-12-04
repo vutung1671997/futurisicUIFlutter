@@ -3,7 +3,7 @@ import 'package:optr/components/frame.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:vizor/vizor.dart';
-import 'package:optr/helpers/sound_effect.dart';
+import 'package:optr/helpers/sound_effect.dart' as sound;
 
 class Instructions extends HookWidget {
   final String content;
@@ -19,7 +19,7 @@ class Instructions extends HookWidget {
   Widget build(BuildContext context) {
     void _runAnimation() async {
       // ignore: unawaited_futures
-      SoundEffect.play(SoundEffect.typing_long, rate: 0.8);
+      sound.SoundEffect.play(sound.SoundEffect.typing_long, rate: 0.8);
     }
 
     useEffect(() {

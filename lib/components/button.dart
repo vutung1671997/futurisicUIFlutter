@@ -135,13 +135,16 @@ class OptrButton extends StatelessWidget {
 
   Widget _buildFlatButton() {
     if (icon == null) {
-      return FlatButton(
+      return TextButton(
         onPressed: _onPressed,
-        highlightColor: color,
-        splashColor: color.withOpacity(0.3),
-        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        padding: padding,
-        textColor: textColor,
+        style: ButtonStyle(
+          overlayColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+            if (states.contains(MaterialState.focused)) return color;
+            if (states.contains(MaterialState.hovered)) return color;
+            if (states.contains(MaterialState.pressed)) return color.withOpacity(0.3);
+            return null; // Defer to the widget's default.
+          }),
+        ),
         child: label,
       );
     } else if (label == null) {
@@ -153,13 +156,16 @@ class OptrButton extends StatelessWidget {
         icon: icon,
       );
     } else {
-      return FlatButton.icon(
+      return TextButton.icon(
         onPressed: _onPressed,
-        highlightColor: color,
-        splashColor: color.withOpacity(0.3),
-        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        padding: padding,
-        textColor: textColor,
+        style: ButtonStyle(
+          overlayColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+            if (states.contains(MaterialState.focused)) return color;
+            if (states.contains(MaterialState.hovered)) return color;
+            if (states.contains(MaterialState.pressed)) return color.withOpacity(0.3);
+            return null; // Defer to the widget's default.
+          }),
+        ),
         icon: icon,
         label: label,
       );
